@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bautizmo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      background-image: url('https://previews.123rf.com/images/vetre/vetre2105/vetre210500054/168704983-fondo-de-bautizo-con-vestido-de-beb%C3%A9-de-bautismo-zapatos-y-cruz-sobre-fondo-pastel.jpg'); /* Reemplaza con tu nombre de imagen */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #333;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.653);
+      border-radius: 10px;
+    }
+
+    .save-the-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .photo-frame {
+      border-radius: 50% / 10%;
+      overflow: hidden;
+      margin: 5px 0;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .names {
+      font-family:  cursive;
+      font-size: 2rem;
+      margin: 20px 0;
+      color: #605d5d;
+      line-height: 1.4;
+      box-shadow: inset;
+    }
+
+    .contador {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.contador div {
+    text-align: center;
+}
+
+.contador span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+    .message {
+      font-size: 1rem;
+      margin: 20px 0;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .section {
+      background: #fff;
+      padding: 50px 20px;
+      border-radius: 10px;
+      margin: 60px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .bible {
+      font-style: italic;
+      margin-top: 30px;
+      color: #999;
+    }
+
+    .calendar {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .calendar strong {
+      color: #c58c8c;
+    }
+
+    .timeline {
+      text-align: left;
+      margin: 40px 0;
+      padding: 30px 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .timeline h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .event {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .event::before {
+      content: "❤";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1rem;
+      color: #c58c8c;
+    }
+
+    .event-time {
+      font-weight: bold;
+      margin-right: 10px;
+      width: 60px;
+    }
+
+    .event-desc {
+      flex: 1;
+    }
+
+    .hr-degradado {
+  border: none;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #bfa37a, transparent);
+  width: 100%;
+  margin: 40px auto;
+}
+.icono {
+    width: 60px;
+    margin-bottom: 15px;
+    animation: fadeInButton 1s ease-out 2s forwards; /* Fade-in para el ícono */
+}
+
+.hr-boda {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4a373, transparent);
+  width: 60%;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+/* Botones */
+.btn-mapa {
+  display: inline-block;
+  background-color: #d4a373;
+  color: white;
+  font-size: 1em;
+  padding: 20px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-mapa:hover {
+  background-color: #b37c4c;
+  transform: scale(1.05);
+}
+
+.itinerario {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.itinerario li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #e4dede;
+  border-radius: 12px;
+  background-color: #fdf7f9;
+  font-size: 1.05rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+
+.itinerario .hora {
+  font-weight: bold;
+  color: #c28291;
+}
+
+.itinerario .evento {
+  flex: 1;
+  text-align: left;
+  margin-left: 15px;
+}
+  /* Estilos para el formulario de confirmación */
+    .confirm-form-section {
+      background: #fff;
+      padding: 30px 20px;
+      margin: 60px 0;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .confirm-form-section h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .confirm-form-section label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      color: #605d5d;
+    }
+    .confirm-form-section input,
+    .confirm-form-section select,
+    .confirm-form-section textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      color: #333;
+    }
+    .confirm-form-section textarea {
+      resize: vertical;
+    }
+    .confirm-form-section button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #c58c8c;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Playfair Display', serif;
+    }
+    .confirm-form-section button:hover {
+      background-color: #a36e6e;
+    }
+    .success-message, .error-message {
+      display: none;
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+    }
+    .success-message {
+      color: green;
+    }
+    .error-message {
+      color: red;
+    }
+  
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="save-the-date">Mi Bautizmo </div>
+    <div class="photo-frame">
+      <img src="https://www.juliobarron.com/wp-content/uploads/2023/03/308010318_591553176015794_2394162700433694555_n-768x1152.jpg" alt="Foto de los novios">
+    </div>
+    <hr class="hr-degradado">
+    <div class="names">
+      Cristian Daniel
+    </div>
+    <hr class="hr-degradado">
+
+    <div class="bible section">
+      “Dejad que los niños vengan a mí, y no se lo impidáis, porque de los que son como ellos es el Reino de Dios.” <br>
+      <p>— Marcos 10:14</p>
+
+    </div>
+
+
+    <div class="contador">
+      <div class="contador-item">
+        <span id="days">--</span>
+        <p>Días</p>
+      </div>
+      <div class="contador-item">
+        <span id="hours">--</span>
+        <p>Horas</p>
+      </div>
+      <div class="contador-item">
+        <span id="minutes">--</span>
+        <p>Minutos</p>
+      </div>
+      <div class="contador-item">
+        <span id="seconds">--</span>
+        <p>Segundos</p>
+      </div>
+    </div>
+    <br>
+    <audio controls>
+        <source src="cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+      </audio>
+    <p class="message">
+     Con inmensa alegría en nuestros corazones,
+queremos invitarte a ser parte de un día muy especial:
+    </p>
+
+    <div class="section">
+  <img src="https://cdn-icons-png.flaticon.com/512/7182/7182813.png" alt="Icono de anillos" class="icono">
+  <h2>Presentación</h2>
+  <hr class="hr-boda">
+  <p style="font-style: italic; font-size: 1.1rem; line-height: 1.7;">
+    
+    <strong style="color: #c28291; font-size: 1.3rem;">El Santo Bautizo de nuestro amado hijo<br>
+    Cristian Daniel</strong><br><br>
+    Agradecemos a Dios por esta bendición,<br>
+    y deseamos compartirla contigo,<br>
+    con el amor de sus orgullosos padres:<br><br>
+    <strong>Rocío Lizeth García Roldán & Eloy Romero Vaquera</strong><br><br>
+    Y con el apoyo espiritual de sus padrinos:<br>
+    <strong>Catalina & Vicenet</strong>
+  </p>
+</div>
+
+
+    <div class="section ">
+      <img src="https://images.vexels.com/media/users/3/129800/isolated/preview/fadff3407b41cc3f1190613f063eb842-icono-de-edificio-de-la-iglesia.png" alt="Icono de anillos" class="icono">
+      <h2>Ceremonia</h2>
+      <hr class="hr-boda">
+      <p><strong>30 AGO | 6:00 PM | 7:30 PM </strong></p>
+      <p>Salón Villa Jazmín</p>
+      <p>Cádiz 419, Col. Exhacienda Los Ángeles</p>
+      <a href="https://maps.app.goo.gl/GYAfbRhgDLDt5BoF8" target="_blank">
+        <button class="btn-mapa">Mapa</button>
+      </a>
+    </div>
+
+  
+
+    <div class="section bible">
+      <img src="https://cdn-icons-png.flaticon.com/512/7021/7021619.png" alt="Icono de anillos" class="icono">
+      <h2>Recepción</h2>
+      <hr class="hr-boda">
+      <p><strong>30 AGO | 7:30 PM </strong></p>
+      <p>Salón Villa Jazmín</p>
+      <p style="font-size: 12px;">Regalo en efectivo</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd74VVMMdypjk5KzX3rbKhFVlsbh0OhlchjTlWDfsby4yBraQ/viewform?usp=header" target="_blank">
+        <button class="btn-mapa">Confirmación</button>
+        
+      </a>
+
+      
+    </div>
+
+   <div class="section">
+      <img src="https://images.vexels.com/media/users/3/205950/isolated/preview/6fbc93ab8efc8497ef9ad1f7c815dd33-icono-de-trazo-de-calendario.png" alt="Icono de calendario" class="icono">
+      <h2>Itinerario</h2>
+      <hr class="hr-boda">
+
+      <ul class="itinerario">
+        <li>
+          <span class="hora">5:30 PM</span>
+          <span class="evento">Llegada de invitados</span>
+        </li>
+        <li>
+          <span class="hora">6:00 PM</span>
+          <span class="evento">Ceremonia del Bautizo</span>
+        </li>
+        <li>
+          <span class="hora">7:00 PM</span>
+          <span class="evento">Sesión de fotos con familia y padrinos</span>
+        </li>
+        <li>
+          <span class="hora">7:30 PM</span>
+          <span class="evento">Cena y convivencia</span>
+        </li>
+        <li>
+          <span class="hora">8:30 PM</span>
+          <span class="evento">Palabras de agradecimiento</span>
+        </li>
+        <li>
+          <span class="hora">9:00 PM</span>
+          <span class="evento">Pastel y brindis</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Aquí empieza el formulario de confirmación -->
+    <div class="confirm-form-section">
+      <h2>Confirmación de Asistencia</h2>
+      <form id="bautizoForm" action="https://formspree.io/f/your-form-id" method="POST">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required />
+
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required />
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="confirmacion">¿Asistirá al bautizo?</label>
+        <select id="confirmacion" name="confirmacion" required>
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="si">Sí, asistiré</option>
+          <option value="no">No podré asistir</option>
+        </select>
+
+        <label for="mensaje">Comentarios adicionales</label>
+        <textarea id="mensaje" name="mensaje" rows="3" placeholder="Si tienes alguna duda o comentario..."></textarea>
+
+        <button type="submit">Enviar Confirmación</button>
+      </form>
+
+      <div class="success-message" id="successMessage">¡Gracias por confirmar tu asistencia!</div>
+      <div class="error-message" id="errorMessage">Hubo un error al enviar el formulario. Intenta de nuevo.</div>
+    </div>
+  </div>
+
+
+  
+  <script>
+    const targetDate = new Date("2025-08-30T15:00:00").getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance < 0) return;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("days").textContent = days.toString().padStart(2, '0');
+      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+     // Envío formulario con fetch a Formspree
+    const form = document.getElementById('bautizoForm');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          successMessage.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error('Error en la respuesta');
+        }
+         } catch (error) {
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
